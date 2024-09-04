@@ -15,6 +15,8 @@ export class InventoryPage extends BaseSwagLabPage {
 
     addItemToCartButton = this.page.locator('[id^="add-to-cart"]');
 
+    filterDropdown = this.page.getByTestId('product-sort-container');
+
     async addItemToCartById(id) {
         await this.addItemToCartButton.nth(id).click();
     }
