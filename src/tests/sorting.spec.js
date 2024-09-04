@@ -30,4 +30,20 @@ test.describe('Saucedemo app basic tests', () => {
         const sortedArray = sortFomLowToHigh(itemsBeforeSort).reverse();
         expect(itemsAfterSort).toStrictEqual(sortedArray);
     });
+    test('Sorting by Name(Z to A)', async (
+        /** @type {{ app: import('../pages/Application').Application }} */{ app },
+    ) => {
+        const itemsBeforeSort = await app.inventory.getInventoryItemNames();
+        await app.inventory.sortFromZtoA();
+        const itemsAfterSort = await app.inventory.getInventoryItemNames();
+        const sortedArray = itemsBeforeSort.sort().reverse();
+        expect(itemsAfterSort).toStrictEqual(sortedArray);
+    });
+    test('Sorting by Name(A to Z)', async (
+        /** @type {{ app: import('../pages/Application').Application }} */{ app },
+    ) => {
+        const itemsAfterSort = await app.inventory.getInventoryItemNames();
+        const sortedArray = itemsAfterSort.sort();
+        expect(itemsAfterSort).toStrictEqual(sortedArray);
+    });
 });
