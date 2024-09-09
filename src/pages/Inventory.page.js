@@ -1,3 +1,4 @@
+import { error } from 'console';
 import { BaseSwagLabPage } from './BaseSwagLab.page';
 
 export class InventoryPage extends BaseSwagLabPage {
