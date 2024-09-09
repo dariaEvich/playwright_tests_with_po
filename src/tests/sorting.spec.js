@@ -16,7 +16,7 @@ test.describe('Saucedemo app basic tests', () => {
         /** @type {{ app: import('../pages/Application').Application }} */{ app },
     ) => {
         const itemsBeforeSort = await app.inventory.getInventoryItemPrices();
-        await app.inventory.sortFromLowToHighPrice();
+        await app.inventory.sort('fromLowToHighPrice');
         const itemsAfterSort = await app.inventory.getInventoryItemPrices();
         const sortedArray = sortFomLowToHigh(itemsBeforeSort);
         expect(itemsAfterSort).toStrictEqual(sortedArray);
@@ -25,7 +25,7 @@ test.describe('Saucedemo app basic tests', () => {
         /** @type {{ app: import('../pages/Application').Application }} */{ app },
     ) => {
         const itemsBeforeSort = await app.inventory.getInventoryItemPrices();
-        await app.inventory.sortFromHighToLowPrice();
+        await app.inventory.sort('fromHighToLowPrice');
         const itemsAfterSort = await app.inventory.getInventoryItemPrices();
         const sortedArray = sortFomLowToHigh(itemsBeforeSort).reverse();
         expect(itemsAfterSort).toStrictEqual(sortedArray);
@@ -34,7 +34,7 @@ test.describe('Saucedemo app basic tests', () => {
         /** @type {{ app: import('../pages/Application').Application }} */{ app },
     ) => {
         const itemsBeforeSort = await app.inventory.getInventoryItemNames();
-        await app.inventory.sortFromZtoA();
+        await app.inventory.sort('fromZtoA');
         const itemsAfterSort = await app.inventory.getInventoryItemNames();
         const sortedArray = itemsBeforeSort.sort().reverse();
         expect(itemsAfterSort).toStrictEqual(sortedArray);

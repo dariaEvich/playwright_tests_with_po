@@ -1,3 +1,4 @@
+import { error } from 'console';
 import { BaseSwagLabPage } from './BaseSwagLab.page';
 
 export class InventoryPage extends BaseSwagLabPage {
@@ -19,20 +20,22 @@ export class InventoryPage extends BaseSwagLabPage {
         await this.addItemToCartButton.nth(id).click();
     }
 
-    async sortFromLowToHighPrice() {
-        await this.filterDropdown.selectOption('lohi');
-    }
-
-    async sortFromHighToLowPrice() {
-        await this.filterDropdown.selectOption('hilo');
-    }
-
-    async sortFromAToZ() {
-        await this.filterDropdown.selectOption('az');
-    }
-
-    async sortFromZtoA() {
-        await this.filterDropdown.selectOption('za');
+    async sort(reason) {
+        let locator;
+        switch (reason) {
+            case 'fromLowToHighPrice':
+                locator = 'lohi';
+                break;
+            case 'fromHighToLowPrice':
+                locator = 'hilo';
+                break;
+            case 'fromZtoA':
+                locator = 'za';
+                break;
+            default:
+                throw error('Select correct menu item!!!!');
+        }
+        await this.filterDropdown.selectOption(locator);
     }
 
     async getInventoryItemNames() {
