@@ -44,7 +44,8 @@ export class InventoryPage extends BaseSwagLabPage {
     }
 
     async getInventoryItemPrices() {
-        const prices = await this.inventoryItemPrices.allTextContents();
+        const textPrices = await this.inventoryItemPrices.allTextContents();
+        const prices = textPrices.map((textPrice) => parseFloat(textPrice.slice(1)));
         return prices;
     }
 }
