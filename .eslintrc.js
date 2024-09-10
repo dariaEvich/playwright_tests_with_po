@@ -25,6 +25,8 @@ module.exports = {
                 SwitchCase: 1,
             },
         ],
+        'import/prefer-default-export': 'off',
+        'max-classes-per-file': 'off',
         'max-len': ['error', {
             code: 120,
             ignoreComments: true,
