@@ -21,6 +21,7 @@ test.describe('Saucedemo app inventory tests', () => {
         const itemsData2 = await app.inventory.getInventoryItemDataById(itemIds[1]);
         await app.inventory.addItemToCartById(itemIds[0]);
         await app.inventory.addItemToCartById(itemIds[1] - 1);
+        await expect(app.baseSwagLab.shoppingCartBadge).toHaveText('2');
         await app.baseSwagLab.shoppingCart.click();
         const cardItemData = await app.shoppingCart.getCartItemDataById(0);
         const cardItemData2 = await app.shoppingCart.getCartItemDataById(1);
