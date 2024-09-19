@@ -12,6 +12,8 @@ export class InventoryPage extends BaseSwagLabPage {
 
     inventoryItemPrices = this.page.getByTestId('inventory-item-price');
 
+    inventoryItemDescription = this.page.getByTestId('inventory-item-desc');
+
     addItemToCartButton = this.page.locator('[id^="add-to-cart"]');
 
     filterDropdown = this.page.getByTestId('product-sort-container');
@@ -48,4 +50,14 @@ export class InventoryPage extends BaseSwagLabPage {
         const prices = textPrices.map((textPrice) => parseFloat(textPrice.slice(1)));
         return prices;
     }
-}
+
+    async getInventoryItemDataById(id) {
+        const name = await this.inventoryItemNames.nth(id).innerText();
+        const description = await this.inventoryItemDescription.nth(id).innerText();
+        const price = await this.inventoryItemPrices.nth(id).innerText();
+        return {
+            name,
+            description,
+            price,
+        };
+    }
