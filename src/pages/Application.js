@@ -3,6 +3,7 @@ import { InventoryPage } from './Inventory.page';
 import { ShoppingCartPage } from './ShoppingCart.page';
 import { BaseSwagLabPage } from './BaseSwagLab.page';
 import { CustomerData } from './CustomerData.page';
+import { CheckoutOverviewPage } from './CheckoutOverview.page';
 
 /**
  * Represents a Playwright page.
@@ -46,4 +47,9 @@ export class Application extends Page {
      * @type {CustomerData}
      */
     customerData = new CustomerData(this.page);
+
+    /**
+     * @type {CheckoutOverviewPage}
+     */
+    checkoutOverview = new CheckoutOverviewPage(this.page);
 }

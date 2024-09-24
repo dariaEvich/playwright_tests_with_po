@@ -22,8 +22,13 @@ test.describe('Saucedemo app inventory tests', () => {
         await app.inventory.addItemToCartById(itemIds[0]);
         await app.inventory.addItemToCartById(itemIds[1] - 1);
         await app.baseSwagLab.shoppingCart.click();
-        await app.baseSwagLab.checkoutButton.click();
+        await app.shoppingCart.checkoutButton.click();
         await app.customerData.setCustomerData(customer1);
         await app.customerData.continueButton.click();
+        // Verify: products (Name, Description, and Price values)
+        const basketData = await app.checkoutOverview.getInventoryItemDataById(0);
+        const basketData2 = await app.checkoutOverview.getInventoryItemDataById(1);
+        await expect(itemsData).toStrictEqual(basketData);
+        await expect(itemsData2).toStrictEqual(basketData2);
     });
 });
