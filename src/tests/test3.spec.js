@@ -30,5 +30,12 @@ test.describe('Saucedemo app inventory tests', () => {
         const basketData2 = await app.checkoutOverview.getInventoryItemDataById(1);
         await expect(itemsData).toStrictEqual(basketData);
         await expect(itemsData2).toStrictEqual(basketData2);
+        // Verify calculated Total Price
+        const totalSumCalculated = await app.checkoutOverview.calculateItemTotal();
+        const totalSumOnPage = await app.checkoutOverview.getItemTotal();
+        await expect(totalSumCalculated).toStrictEqual(totalSumOnPage);
+        const totalWithTaxOnPage = await app.checkoutOverview.getTotalWithTax();
+        const totalWithTaxCalculated = await app.checkoutOverview.calculatedTotalWithTax();
+        await expect(totalWithTaxCalculated).toStrictEqual(totalWithTaxOnPage);
     });
 });
