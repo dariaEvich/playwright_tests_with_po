@@ -61,3 +61,4 @@ export class InventoryPage extends BaseSwagLabPage {
             price,
         };
     }
+}
